@@ -1,0 +1,176 @@
+1.Create a new MongoDB database called myDatabase.
+   //as we dont have any database called myDatabase im using the below command
+
+COMMAND:
+
+test>use myDatabase
+
+OUTPUT:
+
+<switched to db myDatabase
+
+myDatabase>
+
+2.Create a collection named "users" within the myDatabase database.
+
+COMMAND:
+
+>db.createCollection('users')
+
+OUTPUT:
+
+>{ ok: 1 }
+
+myDatabase>
+
+3.Insert at least three documents into the users collection, each representing a user with fields such as name, email, and age.
+
+//I insertone and i also InsertMany by using the commands i will insert the name,email,age fileds.
+
+COMMAND:
+
+myDatabase>db.users.insertOne({'name':'vaishu','email':'vaishnavikolalapudi2002@gmail.com,'age':20}) 
+
+//we have to insert the single single or else we insert all three fileds at a time by using insertMany.
+
+myDatabase>db.users.insertMany([{'name':'vaishu','email':'vashnavikolalapudi2002@gmail.com','age':20},{'name':'anu','email':'anushatippireddy2002@gmail.com','age':20},{'name':'teja','email':'kolalapudi2002@gmail.com','age':23}])
+
+OUTPUT:
+
+<{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65f95ba65e65889628fbe45c'),
+    '1': ObjectId('65f95ba65e65889628fbe45d'),
+    '2': ObjectId('65f95ba65e65889628fbe45e')
+  }
+}
+
+4.All users from the users collection.
+
+//by seeing all the insert fields or all the object id are present in the collections users we use the command.
+
+COMMAND:
+
+>db.users.find()
+
+OUTPUT:
+
+< {
+  _id: ObjectId('65f95ba65e65889628fbe45c'),
+  name: 'vaishu',
+  email: 'vashnavikolalapudi2002@gmail.com',
+  age: 20
+}
+
+{
+  _id: ObjectId('65f95ba65e65889628fbe45d'),
+  name: 'anu',
+  email: 'anushatippireddy2002@gmail.com',
+  age: 20
+}
+
+{
+  _id: ObjectId('65f95ba65e65889628fbe45e'),
+  name: 'teja',
+  email: 'kolalapudi2002@gmail.com',
+  age: 23
+}
+
+myDatabase>
+
+5.Users with an age greater than or equal to 30.
+
+//by using the $gte command .
+
+COMMAND:
+
+>db.users.find({'age':{$gte:30}})
+
+OUTPUT:
+
+COMMAND:
+
+>db.users.find({'age':{$gte:20}})
+
+OUTPUT:
+< {
+  _id: ObjectId('65f95ba65e65889628fbe45c'),
+  name: 'vaishu',
+  email: 'vashnavikolalapudi2002@gmail.com',
+  age: 20
+}
+
+{
+  _id: ObjectId('65f95ba65e65889628fbe45d'),
+  name: 'anu',
+  email: 'anushatippireddy2002@gmail.com',
+  age: 20
+}
+
+{
+  _id: ObjectId('65f95ba65e65889628fbe45e'),
+  name: 'teja',
+  email: 'kolalapudi2002@gmail.com',
+  age: 23
+}
+
+myDatabase>
+
+6.Update the age of a user with a specific email address.
+
+//by using updateMany or updateOne we update the details accordingly our age.
+
+COMMAND:
+
+>db.users.updateMany({'email':'vaishnavikolalapudi2002@gmail.com'},{$set:{age:21}})
+
+OUTPUT:
+
+< {
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+7.Delete a user document based on a specific email address.
+
+//by deleting the specific email address by using the deleteOne command.
+
+COMMAND:
+
+>db.users.deleteOne({'email':'kolalapudi2002@gmail.com'})
+
+OUTPUT:
+
+<{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+8.Create an index on the email field of the users collection.
+
+COMMAND:
+
+>db.users.createIndex({'eamil':1})
+
+OUTPUT:
+
+< eamil_1
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
